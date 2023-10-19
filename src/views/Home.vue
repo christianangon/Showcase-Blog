@@ -74,13 +74,7 @@
             <h3 class="text-h5 font-weight-bold pb-4">News</h3>
             <hr style="height: 5px; background-color: black" />
             <v-row class="py-5">
-              <v-col
-                v-for="i in visibleBlogList"
-                :key="i.id"
-                cols="12"
-                lg="4"
-                md="6"
-              >
+              <v-col v-for="i in blogList" :key="i.id" cols="12" lg="4" md="6">
                 <v-hover
                   v-slot:default="{ hover }"
                   close-delay="50"
@@ -137,7 +131,7 @@
           </div>
           <div style="text-align: center">
             <button
-              v-if="visibleBlogList.length < blogList.length"
+              v-if="blogListMeta.pageSize < blogListMeta.total"
               @click="loadMore"
               class="mx-auto mt-4 text-h5 font-weight-medium"
               variant="plain"
@@ -145,6 +139,12 @@
             >
               Load more news
             </button>
+            <div v-if="loading" class="text-center mt-4">
+              <v-progress-circular
+                indeterminate
+                color="ca2020"
+              ></v-progress-circular>
+            </div>
           </div>
         </div>
       </v-col>
@@ -195,7 +195,7 @@
                           :src="i.image"
                           style="
                             border-radius: 16px;
-                            opacity: 0.7;
+                            opacity: 0.5;
                             display: flex;
                             justify-content: center;
                             align-items: center;
@@ -203,10 +203,10 @@
                         >
                         </v-img>
                         <div
-                          class="font-weight-bold"
+                          class="font-weight-bold text-h5"
                           style="
                             position: absolute;
-                            top: 30%;
+                            top: 33%;
                             left: 50%;
                             transform: translate(-50%, -50%);
                           "
@@ -267,39 +267,31 @@ export default {
   data() {
     return {
       blogList: [],
-      itemsToShow: 12,
+      blogListMeta: {},
+      itemsToShow: 20,
+      loading: false, // Initialize the loading flag
     };
   },
   mounted() {
-    this.handleGetBlog();
-  },
-  computed: {
-    visibleBlogList() {
-      return this.blogList.slice(0, this.itemsToShow);
-    },
+    this.handleGetBlog(10);
   },
   methods: {
-    async handleGetBlog() {
-      const res = await getBlog();
+    async handleGetBlog(count) {
+      let params = {
+        "populate[0]": "thumbnail",
+        "pagination[pageSize]": count,
+      };
+      const res = await getBlog(params);
       if (res.data) {
-        const customImg = [
-          "https://cdn.pixabay.com/photo/2014/11/13/15/24/minecraft-529462_1280.jpg",
-          "https://cdn.pixabay.com/photo/2023/10/16/09/43/programing-8318813_1280.jpg",
-          "https://cdn.pixabay.com/photo/2017/06/07/10/47/elephant-2380009_1280.jpg",
-          "https://cdn.pixabay.com/photo/2018/09/19/23/03/sunset-3689760_1280.jpg",
-          "https://cdn.pixabay.com/photo/2020/05/02/16/22/iguanas-5122093_1280.jpg",
-          "https://cdn.pixabay.com/photo/2014/03/10/16/03/tyrannosaurus-rex-284554_1280.jpg",
-          "https://cdn.pixabay.com/photo/2020/12/23/14/41/forest-5855196_1280.jpg",
-        ];
         const customCategory = ["Games", "Crypto Currency", "Playtech"];
         const customSubCategory = ["Game Provider", "Crypto Provider"];
+        this.blogListMeta = res.data.meta.pagination;
         this.blogList = res.data.data.map((item, index) => {
-          const imageIndex = index % customImg.length;
           const categoryIndex = index % customCategory.length;
           const subcategoryIndex = index % customSubCategory.length;
           return {
             ...item,
-            image: customImg[imageIndex],
+            image: item.thumbnail.url,
             category: customCategory[categoryIndex],
             subcategory: customCategory[subcategoryIndex],
           };
@@ -307,7 +299,18 @@ export default {
       }
     },
     loadMore() {
-      this.itemsToShow += 12; // Increase the number of items to show
+      this.loading = true; // Show the loading effect
+
+      // Simulate an API call (you can replace this with your actual API call)
+      setTimeout(() => {
+        // Increment the counter by 10
+        this.itemsToShow += 10;
+
+        // Use the updated counter in your API call
+        this.handleGetBlog(this.itemsToShow);
+
+        this.loading = false; // Hide the loading effect when done
+      }, 1000); // Simulated API call duration (adjust as needed)
     },
   },
 };
