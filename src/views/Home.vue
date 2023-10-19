@@ -215,8 +215,8 @@
                         </div>
                       </div>
                       <v-card-text>
-                        <div class="font-weight-light primary--text">
-                          <h3>
+                        <div>
+                          <h3 class="font-weight-medium">
                             {{ i.summary }}
                             {{ i.publishedAt }}
                           </h3>
@@ -226,7 +226,7 @@
                   </div>
                 </v-hover>
                 <v-btn
-                  class="py-8"
+                  class="py-8 mt-5"
                   style="
                     background-color: #ca2020;
                     color: #ffffff;

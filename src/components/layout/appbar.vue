@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: Ian
  * @Date: 2023-10-19 17:29:19
- * @LastEditTime: 2023-10-19 20:03:43
+ * @LastEditTime: 2023-10-19 20:14:03
  * @LastEditors: Ian
 -->
 <template>
@@ -98,3 +98,9 @@ export default {
   }),
 };
 </script>
+
+<style lang="scss">
+.v-toolbar__content {
+  border-bottom: 1px solid #f5f5f5;
+}
+</style>
