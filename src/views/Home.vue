@@ -136,14 +136,15 @@
             </v-row>
           </div>
           <div style="text-align: center">
-            <v-btn
+            <button
               v-if="visibleBlogList.length < blogList.length"
               @click="loadMore"
-              class="mx-auto mt-4"
+              class="mx-auto mt-4 text-h5 font-weight-medium"
               variant="plain"
-              style="background-color: white"
-              >Load more news</v-btn
+              style="color: #ca2020"
             >
+              Load more news
+            </button>
           </div>
         </div>
       </v-col>
@@ -185,29 +186,34 @@
                       flat
                       hover
                     >
-                      <v-img
-                        :aspect-ratio="16 / 9"
-                        class="elevation-2"
-                        gradient="to top, rgba(25,32,72,.4), rgba(25,32,72,.0)"
-                        height="200px"
-                        :src="i.image"
-                        style="border-radius: 16px"
-                      >
-                        <div class="d-flex justify-center align-center h-100">
-                          <v-btn
-                            class="w-100"
-                            style="
-                              background-color: #ca2020;
-                              color: #ffffff;
-                              border-radius: 0 10px 0 0;
-                            "
-                            to="category"
-                          >
-                            {{ i.category }}
-                          </v-btn>
+                      <div>
+                        <v-img
+                          :aspect-ratio="16 / 9"
+                          class="elevation-2"
+                          gradient="to top, rgba(25,32,72,.4), rgba(25,32,72,.0)"
+                          height="200px"
+                          :src="i.image"
+                          style="
+                            border-radius: 16px;
+                            opacity: 0.7;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                          "
+                        >
+                        </v-img>
+                        <div
+                          class="font-weight-bold"
+                          style="
+                            position: absolute;
+                            top: 30%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                          "
+                        >
+                          {{ i.category }}
                         </div>
-                      </v-img>
-
+                      </div>
                       <v-card-text>
                         <div class="font-weight-light primary--text">
                           <h3>
@@ -285,7 +291,7 @@ export default {
           "https://cdn.pixabay.com/photo/2014/03/10/16/03/tyrannosaurus-rex-284554_1280.jpg",
           "https://cdn.pixabay.com/photo/2020/12/23/14/41/forest-5855196_1280.jpg",
         ];
-        const customCategory = ["Games", "Crypto Currency"];
+        const customCategory = ["Games", "Crypto Currency", "Playtech"];
         const customSubCategory = ["Game Provider", "Crypto Provider"];
         this.blogList = res.data.data.map((item, index) => {
           const imageIndex = index % customImg.length;

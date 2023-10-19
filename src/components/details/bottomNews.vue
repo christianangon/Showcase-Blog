@@ -2,12 +2,12 @@
  * @Description: 
  * @Author: Ian
  * @Date: 2023-10-19 15:54:09
- * @LastEditTime: 2023-10-19 19:15:03
+ * @LastEditTime: 2023-10-19 20:04:47
  * @LastEditors: Ian
 -->
 <template>
-  <div>
-    <v-row v-for="i in blogList" :key="i.id" class="pt-5 pl-8">
+  <div class="pt-5">
+    <v-row v-for="i in blogList" :key="i.id" class="pl-8">
       <v-icon
         style="display: flex; align-items: flex-start; color: #000000"
         size="28"
