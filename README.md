@@ -46,7 +46,7 @@ We have now switched to the Vite build tool, which is much faster.
 
 ### Installation
 
-1. Get a free API Key at https://demo.uats.site/api/uat-articles
+1. API use: https://demo.uats.site/api/uat-articles
 2. Clone the repo
    ```sh
    git clone https://github.com/christianangon/Showcase-Blog.git
