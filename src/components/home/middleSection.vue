@@ -1,6 +1,6 @@
 <template>
   <v-row>
-    <v-col cols="12" lg="12" xl="8">
+    <v-col cols="12" lg="8" xl="8">
       <div>
         <div class="pt-16">
           <h3 class="text-h5 font-weight-bold pb-4">News</h3>
