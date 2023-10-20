@@ -8,8 +8,7 @@
   <h3 align="center">Showcase Blog</h3>
 
   <p align="center">
-    This Blog webpage is built with [Vuetify](https://vuetifyjs.com/) created
-by Christian for a sample project purposes only.
+    This Blog webpage  created by Christian for a sample project purposes only.
     <br />
     <br />
     <br />
@@ -17,6 +16,11 @@ by Christian for a sample project purposes only.
   
   </p>
 </div>
+
+
+## About
+
+This Blog webpage is an open source library of free Vuetify themes and components. Both desktop and mobile responsive.
 
 
 ## Usage
@@ -59,7 +63,3 @@ We have now switched to the Vite build tool, which is much faster.
    ```sh
    npm run dev
    ```
-
-## About
-
-This Blog webpage is an open source library of free Vuetify themes and components.
