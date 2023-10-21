@@ -20,7 +20,7 @@
 
 ## About
 
-This Blog webpage is an open source library of free Vuetify themes and components. Both desktop and mobile responsive.
+This Blog webpage is build with Vuetify and Vue. Both desktop and mobile responsive.
 
 
 ## Usage
